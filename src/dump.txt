@@ -1,0 +1,70 @@
+##What one can do with actions
+
+let actions = {
+  addCity(context, city) {
+    fetch('http://cities.jonkri.se', {
+      body: JSON.stringify(city),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+      .then(response => response.json())
+      .then(result => {
+        store.commit('setName', null)
+        store.commit('setPopulation', null)
+        store.commit('setCities', result)
+      })
+  }
+}
+
+##Example Component
+
+Vue.component('counter-button', {
+    data() {
+      return {
+        counter: 0
+      }
+    },
+    methods: {
+      onClick() {
+        console.log('Ökar värdet i knappen! (Inne i komponenten)')
+
+        this.counter = this.counter + 1
+
+        this.$emit('value-incremented')
+      }
+    },
+    template: '<input :value="counter" @click="onClick" type="button">'
+  })
+
+  new Vue({
+    el: '#app',
+    methods: {
+      onValueIncremented() {
+        console.log('Värdet i en knapp har ökat! (Utanför komponenten)')
+      }
+    }
+  })
+
+##VueX component
+  Vue.component('some-component', {
+  computed: {
+    someValue: {
+      get() {
+        return this.$store.state.someValue
+      },
+      set(someValue) {
+        this.$store.commit('setSomeValue', someValue)
+      }
+    }
+  },
+  template: '<input v-model="someValue">'
+})
+
+##Image
+  <img alt="Vue logo" src="../assets/logo.png">
+
+
+##Sorting an Array
+array.sort(function(a, b){return a - b});

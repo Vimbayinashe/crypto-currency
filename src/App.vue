@@ -3,10 +3,44 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
+      <p>{{ currencies.data.coins[0].name }}</p>
+      <TopCurrencies heading = "Highest Rated CryptoCurrencies"></TopCurrencies>
+      <History></History>
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+
+import History from '@/components/History.vue'
+import store from './store'
+import TopCurrencies from '@/components/TopCurrencies.vue'
+
+export default {
+  components: {
+    History,
+    TopCurrencies
+  },
+  created () {
+    fetch('https://api.coinranking.com/v1/public/coins')
+      .then(response => response.json())
+      .then(result => {
+        // this.currencies = result
+        store.commit('setCurrencies', result)
+        console.log(this.currencies)
+        console.log(this.currencies.data.coins)
+      })
+  },
+  computed: {
+    currencies () {
+      return this.$store.state.currencies
+    }
+  },
+  name: 'App'
+
+}
+</script>
 
 <style>
 #app {
