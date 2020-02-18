@@ -5,8 +5,10 @@
       <li :key="coin.id" v-for="coin in topFive">
         <div class = "individual">
           <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
-          <p>${{ coin.price }}</p>
+          <p>{{ coin.price }}</p>
           <!-- {{ parseFloat(coin.price).toFixed(2) }} This works but is better to change this in created() -->
+          <div>
+          </div>
         </div>
       </li>
     </ol>
@@ -32,7 +34,8 @@ export default {
         this.topFive = this.coins.data.coins.splice(0, 5)
         console.log(this.topFive)
         this.topFive.forEach(coin => {
-          coin.price = parseFloat(coin.price).toFixed(2)
+          // coin.price = parseFloat(coin.price).toFixed(2)
+          coin.price = (Number(coin.price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
         })
       })
   },

@@ -1,6 +1,6 @@
 <template>
   <div  id = "all-currencies">
-    <h2>History</h2>
+    <h2>All Currencies</h2>
     <div>
       <label for="views">Select display:</label>
       <select id="views">
@@ -11,13 +11,13 @@
     </div>
 
     <ol>
-      <li :key="currency.id" v-for="currency in currencies.data.coins">
+      <li :key="currency.id" v-for="currency in allCrypto">
         <span class = "individual">
           <a alt="" href=""><img :src="currency.iconUrl" alt="">{{ currency.name }}</a>
-          <p>${{ currency.price }}</p>
-          <p>${{ currency.allTimeHigh.price }}</p>
-          <p>${{ currency.firstSeen }}</p>
-          <p>${{ currency.change }}</p>
+          <p>{{ currency.price }}</p>
+          <p>{{ currency.allTimeHigh.price }}</p>
+          <p>{{ currency.firstSeen }}</p>
+          <p>{{ (currency.change).toFixed(2) }}%</p>
         </span>
       </li>
     </ol>
@@ -30,6 +30,9 @@ export default {
   computed: {
     currencies () {
       return this.$store.state.currencies
+    },
+    allCrypto () {
+      return this.$store.state.allCrypto
     }
   },
   name: 'AllCurrencies'

@@ -4,7 +4,7 @@
     <div>
       <h3>All Coins at highest price (Home.vue)</h3>
       <ol>
-        <li :key="value.id" v-for="(value) in currencies.data.coins">{{ value.name }} is {{ value.allTimeHigh.price }}</li>
+        <li :key="value.id" v-for="(value) in currencies.data.coins">{{ value.name }} is {{ value.allTimeHigh.price }} and current price: {{ value.price }}</li>
       </ol>
     </div>
   </div>
@@ -21,6 +21,9 @@ export default {
   computed: {
     currencies () {
       return this.$store.state.currencies
+    },
+    allCoins () {
+      return this.$store.state.allCoins
     }
   },
   name: 'Home'

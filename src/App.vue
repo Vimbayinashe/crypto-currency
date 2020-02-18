@@ -6,7 +6,7 @@
       <!-- name: {{ $route.name }}  unique identifier for this route-->
       <div v-if="$route.name == 'Home'">
         <p>{{ currencies.data.coins[0].name }}</p>
-        <TopCurrencies heading = "Highest Rated CryptoCurrencies"></TopCurrencies>
+        <TopCurrencies></TopCurrencies>
       </div>
     </div>
     <router-link to="/currencies">See All CryptoCurrencies</router-link>
