@@ -3,23 +3,26 @@
     <div id="nav">
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
-      <p>{{ currencies.data.coins[0].name }}</p>
-      <TopCurrencies heading = "Highest Rated CryptoCurrencies"></TopCurrencies>
-      <History></History>
+      <!-- name: {{ $route.name }}  unique identifier for this route-->
+      <div v-if="$route.name == 'Home'">
+        <p>{{ currencies.data.coins[0].name }}</p>
+        <TopCurrencies heading = "Highest Rated CryptoCurrencies"></TopCurrencies>
+      </div>
     </div>
+    <router-link to="/currencies">See All CryptoCurrencies</router-link>
     <router-view/>
   </div>
 </template>
 
 <script>
 
-import History from '@/components/History.vue'
+// import History from '@/components/History.vue'
 import store from './store'
 import TopCurrencies from '@/components/TopCurrencies.vue'
 
 export default {
   components: {
-    History,
+    // History,
     TopCurrencies
   },
   created () {
@@ -63,4 +66,34 @@ export default {
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+
+/* Styling Currency rows */
+
+.individual {
+  align-content: center;
+  justify-content: center;
+  display: flex;
+  flex-direction: row;
+  margin: 2em 1em
+}
+
+.individual>a {
+  text-decoration: none
+}
+
+.individual img {
+  height : 50px;
+  width : auto
+}
+
+* {
+  margin: 1em
+}
+
+li {
+  height: 6em;
+  text-align: center;
+  padding: 0.5em 0
+}
+
 </style>

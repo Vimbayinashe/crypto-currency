@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div  id = "all-currencies">
     <h2>History</h2>
     <div>
       <label for="views">Select display:</label>
@@ -32,7 +32,7 @@ export default {
       return this.$store.state.currencies
     }
   },
-  name: 'History'
+  name: 'AllCurrencies'
 }
 
 </script>

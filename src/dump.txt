@@ -68,3 +68,9 @@ Vue.component('counter-button', {
 
 ##Sorting an Array
 array.sort(function(a, b){return a - b});
+
+##Git Commands
+git checkout -b <new-file>    
+  OR 
+git branch <new-file> 
+git checkout <branch-name>

@@ -1,17 +1,16 @@
 <template>
   <div class="top">
-    <!-- <h2>{{ msg }}</h2> NOT WORKING -->
     <h2>Top 5</h2>
     <ol>
       <li :key="coin.id" v-for="coin in topFive">
         <div class = "individual">
           <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
           <p>${{ coin.price }}</p>
+          <!-- {{ parseFloat(coin.price).toFixed(2) }} This works but is better to change this in created() -->
         </div>
       </li>
-      <!-- <li :key="coin.id" v-for="coin in topFive">{{ coin.name }} costs ${{ coin.price }}</li> -->
     </ol>
-    <!-- Nothing shown in this list => topFive is empty -->
+
   </div>
 </template>
 
@@ -32,6 +31,9 @@ export default {
         this.coins = result
         this.topFive = this.coins.data.coins.splice(0, 5)
         console.log(this.topFive)
+        this.topFive.forEach(coin => {
+          coin.price = parseFloat(coin.price).toFixed(2)
+        })
       })
   },
   data () {
@@ -45,8 +47,10 @@ export default {
     getTopFive () {
       let i = 0
       if (i < 5) {
-        const coin = this.$store.currencies.data.coins[i]
-        this.topFive.push(coin)
+        const oneCoin = this.$store.currencies.data.coins[i]
+        console.log(oneCoin)
+        // const finalCoin = parseFloat(oneCoin.price).toFixed(2)
+        this.topFive.push(oneCoin)
         i++
       }
     }
