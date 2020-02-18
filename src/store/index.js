@@ -6,7 +6,11 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     currencies: null,
-    allCrypto: null
+    allCrypto: null,
+    location: {
+      default: 'us-US',
+      type: String
+    }
   },
   mutations: {
     setCurrencies (state, currencies) {

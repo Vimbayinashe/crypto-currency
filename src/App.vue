@@ -4,13 +4,22 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <!-- name: {{ $route.name }}  unique identifier for this route-->
-      <div>
-        <label for="language">Select display:</label>
-        <select id="language">
-          <option value="10">10 per page</option>
+      <div id = "display-option">
+        <label for="display-format">Location format:</label>
+        <select id="display-format" v-model="location">
+          <option value="us-US">English (US)</option>
+          <option value="gb-GB">English (UK)</option>
+          <option value="de-DE">Germany</option>
+          <option value="sv-SV">Sweden</option>
+        </select>
+        <p>Location: {{ location.slice(3) }}</p>
+
+        <!-- <label for="display-currency">Select display:</label>
+        <select id="display-currency">
+          <option value="USD">USD</option>
           <option value="20">20 per page</option>
           <option value="all">View all</option>
-        </select>
+        </select> -->
       </div>
       <div v-if="$route.name == 'Home' && currencies != null">
         <p>{{ currencies.data.coins[0].name }}</p>
@@ -47,6 +56,13 @@ export default {
   computed: {
     currencies () {
       return this.$store.state.currencies
+    }
+  },
+  data () {
+    return {
+      topFive: [],
+      coins: null,
+      location: 'us-US'
     }
   },
   name: 'App'
@@ -103,6 +119,10 @@ li {
   height: 6em;
   text-align: center;
   padding: 0.5em 0
+}
+
+#display-option {
+  display: inline;
 }
 
 </style>
