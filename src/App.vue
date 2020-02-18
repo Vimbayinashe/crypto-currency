@@ -4,9 +4,19 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <!-- name: {{ $route.name }}  unique identifier for this route-->
-      <div v-if="$route.name == 'Home'">
+      <div>
+        <label for="language">Select display:</label>
+        <select id="language">
+          <option value="10">10 per page</option>
+          <option value="20">20 per page</option>
+          <option value="all">View all</option>
+        </select>
+      </div>
+      <div v-if="$route.name == 'Home' && currencies != null">
         <p>{{ currencies.data.coins[0].name }}</p>
-        <TopCurrencies></TopCurrencies>
+        <TopCurrencies :count="3"></TopCurrencies>
+
+        <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
       </div>
     </div>
     <router-link to="/currencies">See All CryptoCurrencies</router-link>
@@ -16,7 +26,6 @@
 
 <script>
 
-// import History from '@/components/History.vue'
 import store from './store'
 import TopCurrencies from '@/components/TopCurrencies.vue'
 

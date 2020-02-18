@@ -1,6 +1,6 @@
 <template>
   <div class="top">
-    <h2>Top 5</h2>
+    <h2>Top {{ count }} Cryptocurrencies</h2>
     <ol>
       <li :key="coin.id" v-for="coin in topFive">
         <div class = "individual">
@@ -31,7 +31,7 @@ export default {
       .then(response => response.json())
       .then(result => {
         this.coins = result
-        this.topFive = this.coins.data.coins.splice(0, 5)
+        this.topFive = this.coins.data.coins.splice(0, this.count)
         console.log(this.topFive)
         this.topFive.forEach(coin => {
           // coin.price = parseFloat(coin.price).toFixed(2)
@@ -59,13 +59,10 @@ export default {
     }
   },
   name: 'TopCurrencies',
-  // props: {
-  //   cryptoCurrency: {
-  //     type: Object
-  //   }
-  // }
   props: {
-    heading: String
+    count: {
+      type: Number
+    }
   }
 }
 </script>
