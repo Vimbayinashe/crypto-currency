@@ -8,8 +8,9 @@
     </div>
     <CountryChoice @country-selected="$store.commit('changeDate', (location))"></CountryChoice>
     <div v-if="$route.name == 'Home' && currencies != null">
-      <TopCurrencies :count="5"></TopCurrencies>
       <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
+      <TopCurrencies :count="4"></TopCurrencies>
+      <HighestMovers></HighestMovers>
     </div>
     <div id = "all-currencies">
       <router-link to="/currencies">See All CryptoCurrencies</router-link>
@@ -22,12 +23,14 @@
 
 import store from './store'
 import CountryChoice from '@/components/CountryChoice.vue'
+import HighestMovers from '@/components/HighestMovers.vue'
 import TopCurrencies from '@/components/TopCurrencies.vue'
 
 export default {
   components: {
     // History,
     CountryChoice,
+    HighestMovers,
     TopCurrencies
   },
   created () {
