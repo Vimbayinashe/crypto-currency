@@ -1,23 +1,42 @@
 <template>
   <div class="top">
     <h2>Top {{ count }} Cryptocurrencies</h2>
-    <ol>
+    <!-- This has been transferred to a <table>s -->
+    <!-- <ol>
       <li :key="coin.id" v-for="coin in topFive">
         <div class = "individual">
           <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
           <p>{{ coin.price }}</p>
-          <!-- {{ parseFloat(coin.price).toFixed(2) }} This works but is better to change this in created() -->
+          {{ parseFloat(coin.price).toFixed(2) }} This works but is better to change this in created()
           <div>
           </div>
         </div>
       </li>
-    </ol>
+    </ol> -->
+
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr :key="coin.id" v-for="coin in topFive">
+        <td> {{ topFive.indexOf(coin) + 1 }}.</td>
+        <td>
+          <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
+        </td>
+        <td>{{ coin.price }}</td>
+      </tr>
+      </tbody>
+    </table>
 
   </div>
 </template>
 
 <script>
-// import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   computed: {
@@ -43,19 +62,6 @@ export default {
     return {
       topFive: [],
       coins: null
-    }
-  },
-  // Method NOT used
-  methods: {
-    getTopFive () {
-      let i = 0
-      if (i < 5) {
-        const oneCoin = this.$store.currencies.data.coins[i]
-        console.log(oneCoin)
-        // const finalCoin = parseFloat(oneCoin.price).toFixed(2)
-        this.topFive.push(oneCoin)
-        i++
-      }
     }
   },
   name: 'TopCurrencies',

@@ -17,7 +17,7 @@
           <p>{{ currency.price }}</p>
           <p>{{ currency.allTimeHigh.price }}</p>
           <p>{{ currency.firstSeen }}</p>
-          <p>{{ typeof(currency.firstSeen) }}</p>
+          <!-- <p>{{ typeof(currency.firstSeen) }}</p> -->
           <p>{{ (currency.change).toFixed(2) }}%</p>
         </span>
       </li>

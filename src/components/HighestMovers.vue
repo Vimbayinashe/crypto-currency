@@ -7,8 +7,8 @@
       <tr>
         <th></th>
         <th>Name</th>
-        <th>Increase</th>
         <th>Percentage</th>
+        <th>Increase</th>
         <th>Price</th>
         <th>Coin Ranking</th>
       </tr>
@@ -19,29 +19,15 @@
       <td>
         <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
       </td>
-      <td>{{ coin.change*coin.price/100 }}</td>
-      <td>{{ coin.change }}</td>
-      <td>{{ coin.price }}</td>
+      <td>{{ coin.change }}%</td>
+      <td>${{ (parseFloat(coin.change*coin.price/100)).toFixed(2) }}</td>
+      <td>${{ (parseFloat(coin.price)).toFixed(2) }}</td>
       <td>{{ coin.rank }}</td>
     </tr>
     </tbody>
   </table>
 
-<!-- FIX: price into $ with toLocale... & also % -->
-
-    <!-- <ol>
-      <li :key="coin.id" v-for="coin in topFive">
-        <div class = "flex-box">
-          <div>
-            <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
-          </div>
-          <div>Increase % {{ coin.change }}</div>
-          <div>Increase in $</div>
-          <div>{{ coin.price }}</div>
-          <div>{{ coin.rank }}</div>
-        </div>
-      </li>
-    </ol> -->
+<!-- Should parseFloat() / toFixed() be ideally rendered in a function? -->
 
   </div>
 </template>
@@ -79,6 +65,9 @@ export default {
     selectHighest (coins) {
       this.highestChange = this.coins.splice(0, this.count)
     }
+    // formatCoins () {
+    //   Try and make changes to highestChange here
+    // }
   },
   name: 'HighestMovers',
   props: {
