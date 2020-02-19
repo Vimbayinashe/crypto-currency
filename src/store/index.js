@@ -7,13 +7,10 @@ export default new Vuex.Store({
   state: {
     currencies: null,
     allCrypto: null,
-    location: {
-      default: 'us-US',
-      type: String
-    }
+    location: 'us-US'
   },
   mutations: {
-    setCurrencies (state, currencies) {
+    setCurrencies (state, currencies, location) {
       state.currencies = currencies
       state.allCrypto = currencies.data.coins
 
@@ -23,18 +20,49 @@ export default new Vuex.Store({
         // Below is potentially unsupported on Opera & node.js
         // coin.price = new Intl.NumberFormat('us-US', { style: 'currency', currency: 'USD' }).format(coin.price)
 
-        coin.price = (Number(coin.price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
+        coin.price = (Number(coin.price)).toLocaleString(location, { style: 'currency', currency: 'USD' })
       })
+
       state.currencies.data.coins.forEach(coin => {
-        coin.allTimeHigh.price = new Intl.NumberFormat('us-US', { style: 'currency', currency: 'USD' }).format(coin.allTimeHigh.price)
+        coin.allTimeHigh.price = new Intl.NumberFormat(location, { style: 'currency', currency: 'USD' }).format(coin.allTimeHigh.price)
         // coin.allTimeHigh.price = (Number(coin.allTimeHigh.price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
       })
 
       // Change date to regional format  PROP
+
       state.currencies.data.coins.forEach(coin => {
         coin.firstSeen = (new Date(coin.firstSeen)).toLocaleDateString('sv-SE')
       })
+    },
+
+    changeDate (state, location) {
+      state.currencies.data.coins.forEach(coin => {
+        coin.firstSeen = (new Date(coin.firstSeen)).toLocaleDateString(location)
+      })
+    },
+
+    // changeCurrenciesFormat (state, location) {
+    //   state.currencies.data.coins.forEach(coin => {
+    //     coin.price = (Number(coin.price)).toLocaleString(location, { style: 'currency', currency: 'USD' })
+    //   })
+
+    //   state.currencies.data.coins.forEach(coin => {
+    //     coin.allTimeHigh.price = new Intl.NumberFormat(location, { style: 'currency', currency: 'USD' }).format(coin.allTimeHigh.price)
+    //   })
+    // },
+
+    numberFormat (state, location) {
+      state.location = location
+
+      // state.currencies.data.coins.forEach(coin => {
+      //   coin.price = (Number(coin.price)).toLocaleString(location, { style: 'currency', currency: 'USD' })
+      // })
+
+      // state.currencies.data.coins.forEach(coin => {
+      //   coin.allTimeHigh.price = new Intl.NumberFormat(location, { style: 'currency', currency: 'USD' }).format(coin.allTimeHigh.price)
+      // })
     }
+
   },
   actions: {
   },

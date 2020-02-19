@@ -6,13 +6,31 @@
       <!-- name: {{ $route.name }}  unique identifier for this route-->
       <div id = "display-option">
         <label for="display-format">Location format:</label>
-        <select id="display-format" v-model="location">
+        <select
+          id="display-format"
+          v-model="location"
+          @click="$store.dispatch('$store.mutations.changeDate', location)"
+          >
           <option value="us-US">English (US)</option>
           <option value="gb-GB">English (UK)</option>
           <option value="de-DE">Germany</option>
           <option value="sv-SV">Sweden</option>
         </select>
-        <p>Location: {{ location.slice(3) }}</p>
+        <div id = "small-flag">
+          {{ location.slice(3) }}
+          <div v-if="location == 'us-US'">
+            <img src="./assets/flags/us.png" alt="">
+          </div>
+          <div v-else-if="location == 'gb-GB'">
+            <img src="./assets/flags/gb.png" alt="">
+          </div>
+          <div v-else-if="location == 'de-DE'">
+            <img src="./assets/flags/de.png" alt="">
+          </div>
+          <div v-else>
+            <img src="./assets/flags/sv.png" alt="">
+          </div>
+        </div>
 
         <!-- <label for="display-currency">Select display:</label>
         <select id="display-currency">
@@ -23,7 +41,7 @@
       </div>
       <div v-if="$route.name == 'Home' && currencies != null">
         <p>{{ currencies.data.coins[0].name }}</p>
-        <TopCurrencies :count="3"></TopCurrencies>
+        <TopCurrencies :count="5"></TopCurrencies>
 
         <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
       </div>
@@ -56,13 +74,22 @@ export default {
   computed: {
     currencies () {
       return this.$store.state.currencies
+    },
+    location: {
+      get () {
+        return this.$store.state.location
+      },
+      set (location) {
+        this.$store.commit('numberFormat', location)
+        // this.$store.commit('changeCurrenciesFormat', location)
+      }
     }
   },
   data () {
     return {
       topFive: [],
-      coins: null,
-      location: 'us-US'
+      coins: null
+      // location: 'us-US'
     }
   },
   name: 'App'
