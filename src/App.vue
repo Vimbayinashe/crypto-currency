@@ -4,17 +4,17 @@
       <router-link to="/">Home</router-link> |
       <router-link to="/about">About</router-link>
       <!-- name: {{ $route.name }}  unique identifier for this route-->
-      <CountryChoice></CountryChoice>
-      <div v-if="$route.name == 'Home' && currencies != null">
-        <p>{{ currencies.data.coins[0].name }}</p>
-        <TopCurrencies :count="5"></TopCurrencies>
-
-        <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
-      </div>
 
     </div>
-    <router-link to="/currencies">See All CryptoCurrencies</router-link>
-    <router-view/>
+    <CountryChoice @country-selected="$store.commit('changeDate', (location))"></CountryChoice>
+    <div v-if="$route.name == 'Home' && currencies != null">
+      <TopCurrencies :count="5"></TopCurrencies>
+      <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
+    </div>
+    <div id = "all-currencies">
+      <router-link to="/currencies">See All CryptoCurrencies</router-link>
+      <router-view/>
+    </div>
   </div>
 </template>
 
@@ -119,6 +119,10 @@ li {
 
 #display-option {
   display: inline;
+}
+
+#all-currencies {
+  margin: 5em 1em;
 }
 
 </style>

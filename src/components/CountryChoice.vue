@@ -1,14 +1,14 @@
 <template>
   <div id = "display-option">
-        <label for="display-format">Location format:</label>
+        <label for="display-format">Date format:</label>
         <select
           id="display-format"
           v-model="location"
-          @click="$store.dispatch('$store.mutations.changeDate', location)"
+          @click="countrySelected()"
           >
-          <option value="us-US">English (US)</option>
-          <option value="gb-GB">English (UK)</option>
-          <option value="de-DE">Germany</option>
+          <option value="us-US">United States</option>
+          <!-- <option value="gb-GB">English (UK)</option> -->
+          <!-- <option value="de-DE">Germany</option> -->
           <option value="sv-SV">Sweden</option>
         </select>
         <div id = "small-flag">
@@ -16,12 +16,12 @@
           <div v-if="location == 'us-US'">
             <img src="../assets/flags/us.png" alt="">
           </div>
-          <div v-else-if="location == 'gb-GB'">
+          <!-- <div v-else-if="location == 'gb-GB'">
             <img src="../assets/flags/gb.png" alt="">
-          </div>
-          <div v-else-if="location == 'de-DE'">
+          </div> -->
+          <!-- <div v-else-if="location == 'de-DE'">
             <img src="../assets/flags/de.png" alt="">
-          </div>
+          </div> -->
           <div v-else>
             <img src="../assets/flags/sv.png" alt="">
           </div>
@@ -53,6 +53,11 @@ export default {
         this.$store.commit('numberFormat', location)
         // this.$store.commit('changeCurrenciesFormat', location)
       }
+    }
+  },
+  methods: {
+    countrySelected () {
+      this.$emit('country-selected', location)
     }
   },
   name: 'CountryChoice'

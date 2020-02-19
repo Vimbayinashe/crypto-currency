@@ -1,4 +1,4 @@
-<template>
+<template @country-selected="$store.commit.setCurrencies">
   <div  id = "all-currencies">
     <h2>All Currencies</h2>
     <div>
@@ -17,6 +17,7 @@
           <p>{{ currency.price }}</p>
           <p>{{ currency.allTimeHigh.price }}</p>
           <p>{{ currency.firstSeen }}</p>
+          <p>{{ typeof(currency.firstSeen) }}</p>
           <p>{{ (currency.change).toFixed(2) }}%</p>
         </span>
       </li>
