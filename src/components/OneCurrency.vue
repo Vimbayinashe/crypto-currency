@@ -1,14 +1,10 @@
 <template>
 
   <div>
-    <h2> {{ $route.params.coin }} </h2>
+    <h2> {{ this.$route.params.coin }} </h2>
     <div>
-      Information
-      <!-- {{
-        allCrypto.
-      }} -->
-      <p>{{ currencies.data.coins[0] }}</p>
-      result
+      <p>Current Index: {{ coinIndex }}</p>
+      <p>Current Name: {{allCrypto[coinIndex].name}}</p>
     </div>
 
     <!-- Hypothetical Output -->
@@ -41,8 +37,7 @@ export default {
   },
   data () {
     return {
-      // result: this.$store.state.allCrypto.find(coin => coin.name === this.$route.params.coin)
-      // link: this.$route.params.coin // v-model is the one which updates automatically
+      coinIndex: null
     }
   },
   beforeMount () {
@@ -52,10 +47,15 @@ export default {
     setTitle () {
       document.title = 'CryptoBourse: ' + this.$route.params.coin
       // document.title = 'About ' + this.$route.params.userName
+    },
+    getIndex () {
+      this.coinIndex = this.$store.state.allCrypto.findIndex(coin => coin.name === this.$route.params.coin)
+      console.log(this.allCrypto[this.coinIndex])
     }
   },
   updated () {
     this.setTitle()
+    this.getIndex()
   },
   name: 'OneCurrency'
 }
