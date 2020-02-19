@@ -26,6 +26,17 @@ export default {
       return this.$store.state.allCoins
     }
   },
-  name: 'Home'
+  name: 'Home',
+  beforeMount () {
+    this.setTitle()
+  },
+  methods: {
+    setTitle () {
+      document.title = 'CryptoCurrency Bourse'
+    }
+  },
+  updated () {
+    this.setTitle()
+  }
 }
 </script>

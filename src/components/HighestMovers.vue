@@ -17,7 +17,12 @@
     <tr :key="coin.id" v-for="coin in highestChange">
       <td> {{ highestChange.indexOf(coin) + 1 }}.</td>
       <td>
-        <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
+        <router-link
+         :to="'/currencies/' + coin.name"
+         >
+          <img :src="coin.iconUrl" :alt="coin.name + 'logo'">
+          {{ coin.name }}
+        </router-link>
       </td>
       <td>{{ coin.change }}%</td>
       <td>${{ (parseFloat(coin.change*coin.price/100)).toFixed(2) }}</td>

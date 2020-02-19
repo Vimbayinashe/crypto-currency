@@ -1,21 +1,28 @@
 <template>
   <div id="app">
+
     <div id="nav">
-      <router-link to="/">Home</router-link> |
+      <router-link to="/">CryptoCurrency Bourse</router-link> |
       <router-link to="/about">About</router-link>
       <!-- name: {{ $route.name }}  unique identifier for this route-->
-
     </div>
-    <CountryChoice @country-selected="$store.commit('changeDate', (location))"></CountryChoice>
+
+    <div v-if="!$route.params.coin">
+      <CountryChoice @country-selected="$store.commit('changeDate', (location))"></CountryChoice>
+    </div>
+
     <div v-if="$route.name == 'Home' && currencies != null">
       <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
       <TopCurrencies :count="4"></TopCurrencies>
       <HighestMovers></HighestMovers>
     </div>
-    <div id = "all-currencies">
+
+    <div id = "all-currencies" v-if="!$route.params.coin">
       <router-link to="/currencies">See All CryptoCurrencies</router-link>
-      <router-view/>
     </div>
+
+    <router-view/>
+
   </div>
 </template>
 

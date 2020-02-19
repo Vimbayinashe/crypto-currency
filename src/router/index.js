@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import AllCurrencies from '../components/AllCurrencies.vue'
+import OneCurrency from '../components/OneCurrency.vue'
 
 Vue.use(VueRouter)
 
@@ -23,6 +24,11 @@ const routes = [
     path: '/currencies',
     name: 'AllCurrencies',
     component: AllCurrencies
+  },
+  {
+    path: '/currencies/:coin',
+    name: 'OneCurrency', // Is this necessary
+    component: OneCurrency
   }
 ]
 
