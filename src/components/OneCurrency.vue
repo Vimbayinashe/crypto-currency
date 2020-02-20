@@ -2,9 +2,9 @@
 
   <div>
     <h2> {{ this.$route.params.coin }} </h2>
-    <div>
+    <div v-if="coins != null">
       <p>Current Index: {{ coinIndex }}</p>
-      <p>Current Name: {{allCrypto[coinIndex].name}}</p>
+      <p>Current Name: {{coins[coinIndex].name}}</p>
     </div>
 
     <!-- Hypothetical Output -->
@@ -26,18 +26,23 @@
 
 <script>
 
+// trying another way
+
 export default {
-  computed: {
-    currencies () {
-      return this.$store.state.currencies
-    },
-    allCrypto () {
-      return this.$store.state.allCrypto
-    }
+  created () {
+    fetch('https://api.coinranking.com/v1/public/coins')
+      .then(response => response.json())
+      .then(result => {
+        this.allResult = result
+        this.coins = this.allResult.data.coins
+        this.getIndex()
+      })
   },
   data () {
     return {
-      coinIndex: null
+      allResult: null,
+      coinIndex: null,
+      coins: null
     }
   },
   beforeMount () {
@@ -46,16 +51,14 @@ export default {
   methods: {
     setTitle () {
       document.title = 'CryptoBourse: ' + this.$route.params.coin
-      // document.title = 'About ' + this.$route.params.userName
     },
     getIndex () {
-      this.coinIndex = this.$store.state.allCrypto.findIndex(coin => coin.name === this.$route.params.coin)
-      console.log(this.allCrypto[this.coinIndex])
+      this.coinIndex = this.coins.findIndex(coin => coin.name === this.$route.params.coin)
     }
   },
   updated () {
     this.setTitle()
-    this.getIndex()
+    // this.getIndex()
   },
   name: 'OneCurrency'
 }

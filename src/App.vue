@@ -13,7 +13,7 @@
 
     <div v-if="$route.name == 'Home' && currencies != null">
       <!-- This prop lets me change number of top currencies displayed on Home Screen  -->
-      <TopCurrencies :count="4"></TopCurrencies>
+      <TopCurrencies :count="5"></TopCurrencies>
       <HighestMovers></HighestMovers>
     </div>
 

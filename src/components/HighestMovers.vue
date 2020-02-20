@@ -41,7 +41,6 @@
 
 export default {
   created () {
-    // fetch
     fetch('https://api.coinranking.com/v1/public/coins')
       .then(response => response.json())
       .then(result => {
