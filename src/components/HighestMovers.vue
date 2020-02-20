@@ -3,34 +3,34 @@
     <h2>Highest Moving Cryptocurrencies</h2>
 
     <table>
-    <thead>
-      <tr>
-        <th></th>
-        <th>Name</th>
-        <th>Percentage</th>
-        <th>Increase</th>
-        <th>Price</th>
-        <th>Coin Ranking</th>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Name</th>
+          <th>Percentage</th>
+          <th>Increase</th>
+          <th>Price</th>
+          <th>Coin Ranking</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr :key="coin.id" v-for="coin in highestChange">
+        <td> {{ highestChange.indexOf(coin) + 1 }}.</td>
+        <td>
+          <router-link
+          :to="'/currencies/' + coin.name"
+          >
+            <img :src="coin.iconUrl" :alt="coin.name + 'logo'">
+            {{ coin.name }}
+          </router-link>
+        </td>
+        <td>{{ coin.change }}%</td>
+        <td>${{ (parseFloat(coin.change*coin.price/100)).toFixed(2) }}</td>
+        <td>${{ (parseFloat(coin.price)).toFixed(2) }}</td>
+        <td>{{ coin.rank }}</td>
       </tr>
-    </thead>
-    <tbody>
-    <tr :key="coin.id" v-for="coin in highestChange">
-      <td> {{ highestChange.indexOf(coin) + 1 }}.</td>
-      <td>
-        <router-link
-         :to="'/currencies/' + coin.name"
-         >
-          <img :src="coin.iconUrl" :alt="coin.name + 'logo'">
-          {{ coin.name }}
-        </router-link>
-      </td>
-      <td>{{ coin.change }}%</td>
-      <td>${{ (parseFloat(coin.change*coin.price/100)).toFixed(2) }}</td>
-      <td>${{ (parseFloat(coin.price)).toFixed(2) }}</td>
-      <td>{{ coin.rank }}</td>
-    </tr>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
 
 <!-- Should parseFloat() / toFixed() be ideally rendered in a function? -->
 

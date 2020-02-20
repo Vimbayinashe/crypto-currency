@@ -26,7 +26,12 @@
       <tr :key="coin.id" v-for="coin in topFive">
         <td> {{ topFive.indexOf(coin) + 1 }}.</td>
         <td>
-          <a alt="" href=""><img :src="coin.iconUrl" alt="">{{ coin.name }}</a>
+          <router-link
+            :to="'/currencies/' + coin.name"
+          >
+            <img :src="coin.iconUrl" :alt="coin.name + 'logo'">
+            {{ coin.name }}
+          </router-link>
         </td>
         <td>{{ coin.price }}</td>
       </tr>
