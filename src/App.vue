@@ -17,7 +17,7 @@
       <HighestMovers></HighestMovers>
     </div>
 
-    <div id = "all-currencies" v-if="!$route.params.coin">
+    <div id = "all-currencies" v-if="!$route.params.coin && $route.name !='AllCurrencies'">
       <router-link to="/currencies">See All CryptoCurrencies</router-link>
     </div>
 

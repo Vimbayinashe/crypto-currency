@@ -1,12 +1,9 @@
 <template>
   <div class="home">
-    <!-- <p>{{ currencies.data.coins[0] }}</p> -->
     <div>
-      <h3>All Coins at highest price (Home.vue)</h3>
-      <ol v-if="currencies != null">
-        <li :key="value.id" v-for="(value) in currencies.data.coins">{{ value.name }} is {{ value.allTimeHigh.price }} and current price: {{ value.price }}</li>
-      </ol>
-    </div>
+    A cryptocurrency is a digital or virtual currency that is secured by cryptography, which makes it nearly impossible to counterfeit or double-spend. Many cryptocurrencies are decentralized networks based on blockchain technology—a distributed ledger enforced by a disparate network of computers. A defining feature of cryptocurrencies is that they are generally not issued by any central authority, rendering them theoretically immune to government interference or manipulation.
+    </div> <div id="creditation">Source: www.investopedia.com</div>
+
   </div>
 </template>
 
