@@ -1,19 +1,17 @@
 <template>
 
   <div>
-    <!-- <h2> {{ this.$route.params.coin }} </h2> -->
     <div v-if="coins != null">
-      <!-- <p>Current Index: {{ coinIndex }}</p>
-      <p>Current Name: {{coins[coinIndex].name}}</p> -->
 
       <div id = "single-currency">
-        <div>
+        <div id="single-header">
           <img id="single-image" :src="coins[coinIndex].iconUrl" alt="">
           <h2>{{ coins[coinIndex].name }}</h2>
         </div>
 
-        <div>{{ coins[coinIndex].description}}</div>
-        <div id = "single-flex">
+        <div id="currency-description">{{ coins[coinIndex].description}}</div>
+
+        <div id = "information">
           <!-- Format as flexbox with 2 rows -->
           <div class = "flex-heading">Rank:</div>
           <div>{{ coins[coinIndex].rank }}</div>
@@ -38,7 +36,6 @@
           <!-- </div> -->
 
         </div>
-        <div></div>
       </div>
     </div>
   </div>
@@ -106,3 +103,53 @@ export default {
 }
 
 </script>
+
+<style>
+
+#single-currency {
+  height: 60vh;
+  margin: 4em 6em;
+}
+
+#single-currency img {
+  height : 6em;
+  /* margin: 2em ; */
+  width : auto
+}
+
+#single-header {
+  display:flex;
+  flex-direction: row;
+  margin: 3em;
+}
+
+#single-header h2{
+  font-size: 200%;
+  padding-top: 1.1em
+}
+
+#currency-description {
+  font-size: 130%;
+  font-style: italic;
+  line-height: 170%;
+  margin: 2em 0
+}
+
+#information {
+  display: flex;
+  flex-wrap: wrap;
+  width: 50vw;
+}
+
+#information > div {
+  font-weight: 1.2;
+  margin: 0.2em;
+  width: 40%;
+}
+
+.flex-heading {
+  /* color: rgba(0, 0, 0, 0.747); */
+  font-size: 110%;
+  width: 20%;
+}
+</style>

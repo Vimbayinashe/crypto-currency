@@ -74,3 +74,6 @@ git checkout -b <new-file>
   OR 
 git branch <new-file> 
 git checkout <branch-name>
+
+##Routes
+name: {{ $route.name }}  unique identifier for this route

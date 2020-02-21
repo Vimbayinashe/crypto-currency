@@ -84,6 +84,7 @@ export default {
 </script>
 
 <style>
+
 .individual {
   align-content: center;
   justify-content: center;
@@ -96,7 +97,7 @@ a {
   text-decoration: none
 }
 
-img {
+td img {
   height : 50px;
   width : auto
 }
