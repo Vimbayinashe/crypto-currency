@@ -27,7 +27,7 @@ const routes = [
   },
   {
     path: '/currencies/:coin',
-    name: 'OneCurrency', // Is this necessary
+    name: 'OneCurrency',
     component: OneCurrency
   }
 ]

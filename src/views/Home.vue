@@ -12,9 +12,7 @@
 // import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  components: {
-    // HelloWorld
-  },
+
   computed: {
     currencies () {
       return this.$store.state.currencies

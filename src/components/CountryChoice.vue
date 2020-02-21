@@ -15,8 +15,9 @@
           id="display-format"
           v-model="location"
           @click="countrySelected()"
-          >
+        >
           <option value="us-US">United States</option>
+          <!-- Future Development Formats -->
           <!-- <option value="gb-GB">English (UK)</option> -->
           <!-- <option value="de-DE">Germany</option> -->
           <option value="sv-SV">Sweden</option>
@@ -39,7 +40,6 @@ export default {
       },
       set (location) {
         this.$store.commit('numberFormat', location)
-        // this.$store.commit('changeCurrenciesFormat', location)
       }
     }
   },
@@ -53,7 +53,8 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
 #display-option {
   display:flex;
   flex-direction: row;

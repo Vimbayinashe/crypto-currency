@@ -51,10 +51,7 @@ export default {
     fetch('https://api.coinranking.com/v1/public/coins')
       .then(response => response.json())
       .then(result => {
-        // this.currencies = result
         store.commit('setCurrencies', result)
-        console.log(this.currencies)
-        console.log(this.currencies.data.coins)
       })
   },
   computed: {
@@ -67,7 +64,6 @@ export default {
       },
       set (location) {
         this.$store.commit('numberFormat', location)
-        // this.$store.commit('changeCurrenciesFormat', location)
       }
     }
   },
@@ -75,7 +71,6 @@ export default {
     return {
       topFive: [],
       coins: null
-      // location: 'us-US'
     }
   },
   name: 'App'
@@ -84,19 +79,14 @@ export default {
 </script>
 
 <style>
+
 * {
-  all: revert;
   margin: 0;
   padding: 0;
-
 }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
-  /* -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale; */
-  /* text-align: center; */
-  /* color: #2c3e50; */
 }
 
 #main-heading {
@@ -131,14 +121,6 @@ margin: 0 1.5em;
   clear: both;
   margin: 5em;
 }
-/*
-#nav a.router-link-exact-active {
-  color: #42b983;
-} */
-
-a:visited {
-  color: blue;
-}
 
 #home-contents {
   display: flex;
@@ -156,6 +138,17 @@ h2 {
   padding: 0 1.5em;
 }
 
+/* link style */
+
+a {
+  text-decoration: none
+}
+
+a:visited {
+  color: blue;
+}
+
+/* Table Style */
 th, tr{
   margin: 2em;
   padding: 1em;
@@ -165,6 +158,13 @@ tr, td {
   margin: 2em;
   padding: 1em;
 }
+
+td img {
+  height : 50px;
+  width : auto
+}
+
+/* All Currency Styles */
 
 #currencies-button {
   text-align: center;
@@ -181,24 +181,22 @@ tr, td {
   top: 1em;
 }
 
+#all-currencies {
+  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.25), -3px 0px 8px rgba(0, 0, 0, 0.25);
+  margin: 4em 6em;
+  padding: 2em;
+  width: 75vw
+}
+
+/* Footer Style */
+
 footer {
-  /* position: absolute;
-  bottom: 0; */
   background: #4AEA80;
   height: 7vh;
   font-size: 1.5em;
   padding-top: 0.8em;
   text-align: center;
   width: 100vw;
-}
-
-/* Styling All Currency  */
-
-#all-currencies {
-  box-shadow: 3px 4px 8px rgba(0, 0, 0, 0.25), -3px 0px 8px rgba(0, 0, 0, 0.25);
-  margin: 4em 6em;
-  padding: 2em;
-  width: 75vw
 }
 
 </style>

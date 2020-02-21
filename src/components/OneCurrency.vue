@@ -11,8 +11,8 @@
 
         <div id="currency-description">{{ coins[coinIndex].description}}</div>
 
+        <!-- Format as flexbox with 2 rows -->
         <div id = "information">
-          <!-- Format as flexbox with 2 rows -->
           <div class = "flex-heading">Rank:</div>
           <div>{{ coins[coinIndex].rank }}</div>
           <div class = "flex-heading">Price: </div>
@@ -23,17 +23,12 @@
           <div>{{ coins[coinIndex].allTimeHigh.price }}</div>
           <div class = "flex-heading">First Seen:</div>
           <div>{{ coins[coinIndex].firstSeen}}</div>
-          <!-- <div class = "flex-heading">Historical Price (7 days): </div> -->
-
-          <!-- Below is working with formula inline -->
-          <!-- <div :key="price.id" v-for="price in priceHistory">
-            <div>
-              {{ (parseFloat(price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' }) }}
-            </div> -->
-
-            <!-- whilst price gives unformatted numbers -->
-            <!-- <div>{{ price}} </div> -->
-          <!-- </div> -->
+          <div class = "flex-heading">Historical Price (7 days): </div>
+          <div>
+            <div id="historical-prices" :key="price.id" v-for="price in priceHistory">
+              <div>{{ price}} </div>
+            </div>
+          </div>
 
         </div>
       </div>
@@ -43,8 +38,6 @@
 </template>
 
 <script>
-
-// trying another way
 
 export default {
   created () {
@@ -91,9 +84,8 @@ export default {
       } else {
         this.priceHistory = this.coins[this.coinIndex].history
       }
-      this.priceHistory.forEach(price => {
-        price = (parseFloat(price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' })
-      })
+
+      this.priceHistory = this.priceHistory.map(price => (parseFloat(price)).toLocaleString('us-US', { style: 'currency', currency: 'USD' }))
     }
   },
   updated () {
@@ -104,16 +96,18 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
+#historical-prices {
+  margin: 0.4em
+}
 
 #single-currency {
   height: 60vh;
-  margin: 4em 6em;
+  margin: 4em 6em 10em;
 }
 
 #single-currency img {
   height : 6em;
-  /* margin: 2em ; */
   width : auto
 }
 
@@ -148,7 +142,6 @@ export default {
 }
 
 .flex-heading {
-  /* color: rgba(0, 0, 0, 0.747); */
   font-size: 110%;
   width: 20%;
 }

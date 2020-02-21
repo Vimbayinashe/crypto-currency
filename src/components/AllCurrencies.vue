@@ -41,6 +41,7 @@
 <script>
 
 export default {
+
   computed: {
     currencies () {
       return this.$store.state.currencies
@@ -49,7 +50,18 @@ export default {
       return this.$store.state.allCrypto
     }
   },
-  name: 'AllCurrencies'
+  name: 'AllCurrencies',
+  beforeMount () {
+    this.setTitle()
+  },
+  methods: {
+    setTitle () {
+      document.title = 'CryptoBourse Currencies'
+    }
+  },
+  updated () {
+    this.setTitle()
+  }
 }
 
 </script>
