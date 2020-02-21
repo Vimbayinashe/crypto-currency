@@ -1,4 +1,5 @@
 # currencies
+This is an app that provides a platform to get information about cryptocurrencies. Data is fetched from a cryptocurrency API and the project is built using Vue CLI.
 
 ## Project setup
 ```
