@@ -1,4 +1,4 @@
-<template @country-selected="$store.commit.setCurrencies">
+<template @country-selected="changeRegion(payload)">
   <div  id = "all-currencies">
     <h2>All Currencies</h2>
 
@@ -57,6 +57,9 @@ export default {
   methods: {
     setTitle () {
       document.title = 'CryptoBourse Currencies'
+    },
+    changeRegion (payload) {
+      console.log(payload)
     }
   },
   updated () {

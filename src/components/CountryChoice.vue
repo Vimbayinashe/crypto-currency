@@ -2,25 +2,24 @@
   <div id = "display-option">
         <label for="display-format">
           <div id = "small-flag">
-            <div>{{ location.slice(3) }}</div>
-            <div v-if="location == 'us-US'">
-              <img src="../assets/flags/us.png" alt="">
-            </div>
-            <div v-else>
-              <img src="../assets/flags/sv.png" alt="">
-            </div>
+            Select Region:
           </div>
         </label>
         <select
           id="display-format"
-          v-model="location"
-          @click="countrySelected()"
         >
-          <option value="us-US">United States</option>
+          <!-- v-model="location" was in select element-->
+          <option value="us-US"  @click="countrySelected('US')">
+            United States
+          </option>
           <!-- Future Development Formats -->
-          <!-- <option value="gb-GB">English (UK)</option> -->
-          <!-- <option value="de-DE">Germany</option> -->
-          <option value="sv-SV">Sweden</option>
+          <option value="gb-GB" @click="countrySelected('GB')">
+            English (UK)
+          </option>
+          <option value="de-DE" @click="countrySelected('DE')">
+            Germany
+          </option>
+          <option value="sv-SV" @click="countrySelected('SV')">Sweden</option>
         </select>
 
       </div>
@@ -44,8 +43,9 @@ export default {
     }
   },
   methods: {
-    countrySelected () {
-      this.$emit('country-selected', location)
+    countrySelected (code) {
+      this.$emit('country-selected', code)
+      console.log('Payload emitted: ' + code)
     }
   },
   name: 'CountryChoice'
