@@ -2,7 +2,7 @@
   <div class="highest">
     <h2>Highest Moving Cryptocurrencies</h2>
 
-    <table>
+    <table @country-selected="adjustDate">
       <thead>
         <tr>
           <th></th>
@@ -57,9 +57,19 @@ export default {
       coins.sort(function (a, b) {
         return b.change - a.change
       })
+      // coins.forEach(coin => {
+      //   coin.price = (Number(coin.price)).toLocaleString(this.format, { style: 'currency', currency: 'USD' })
+      // })
     },
     selectHighest (coins) {
       this.highestChange = this.coins.splice(0, this.count)
+    },
+    adjustDate (payload) {
+      console.log(payload)
+      console.log('something is happening in HighestMover')
+      // this.coins.forEach(coin => {
+      //   coin.firstSeen = (new Date(coin.firstSeen)).toLocaleDateString(payload)
+      // })
     }
   },
   name: 'HighestMovers',
@@ -68,6 +78,10 @@ export default {
       default: 5,
       type: Number
     }
+    // format: {
+    //   default: 'sv-SV',
+    //   type: String
+    // }
   }
 }
 </script>

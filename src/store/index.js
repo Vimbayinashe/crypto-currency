@@ -33,6 +33,7 @@ export default new Vuex.Store({
       state.allCrypto.forEach(coin => {
         coin.firstSeen = (new Date(coin.firstSeen)).toLocaleDateString(location)
       })
+      console.log(location)
     },
 
     numberFormat (state, location) {

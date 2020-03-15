@@ -10,8 +10,11 @@
       </router-link>
     </div>
 
+    <h2> {{welcome}}! </h2>
     <div id="country-choice" v-if="!$route.params.coin">
-      <CountryChoice @country-selected="$store.commit('changeDate', (location))"></CountryChoice>
+      <CountryChoice @country-selected="adjustDate">
+      </CountryChoice>
+      <p> {{ region }} </p>
     </div>
 
     <div id="home-contents" v-if="$route.name == 'Home' && currencies != null">
@@ -70,7 +73,20 @@ export default {
   data () {
     return {
       topFive: [],
-      coins: null
+      coins: null,
+      region: 'Default region: USA',
+      welcome: 'Welcome'
+    }
+  },
+  methods: {
+    adjustDate (payload) {
+      console.log(payload)
+      console.log('something is happening in App')
+      this.region = payload + ' selected'
+
+      if (payload === 'SV') this.welcome = 'Välkommen'
+      else if (payload === 'DE') this.welcome = 'Willkommen'
+      else this.welcome = 'Welcome'
     }
   },
   name: 'App'
@@ -186,6 +202,12 @@ td img {
   margin: 4em 6em;
   padding: 2em;
   width: 75vw
+}
+
+h2{
+  /* margin-top: 1em; */
+  padding: 2em;
+  text-align: center;
 }
 
 /* Footer Style */
